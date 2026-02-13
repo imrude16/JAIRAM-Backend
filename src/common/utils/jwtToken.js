@@ -1,13 +1,23 @@
-import { sign } from "jsonwebtoken";
-import { JWT_SECRET } from "../../config/env";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET_KEY } from "../../config/env.js";
+
+/**
+ * JWT TOKEN UTILITY
+ * 
+ * Handles JWT token generation for user authentication
+ * 
+ * Note: jsonwebtoken is a CommonJS package, so we import the default export
+ * instead of named exports to avoid ES module compatibility issues
+ */
+
 const generateToken = (user) => {
-    return sign(
+    return jwt.sign(
         {
             id: user._id,
             role: user.role
         },
-        JWT_SECRET,
-        { expiresIn: "1d" }
+        JWT_SECRET_KEY,
+        { expiresIn: "7d" }
     );
 };
 

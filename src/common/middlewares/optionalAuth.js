@@ -1,9 +1,25 @@
-import verify  from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import AppError from "../errors/AppError.js";
+import { JWT_SECRET_KEY } from "../../config/env.js";
 
-//Optional Auth to be use at global level -> 
-// -> If User loggedIn get UserInfo add into req object;
-// -> If not loggedIn then allow to go next;
+/**
+ * OPTIONAL AUTHENTICATION MIDDLEWARE
+ * 
+ * This middleware is applied globally to all routes.
+ * 
+ * Purpose:
+ * - If user is logged in (has valid token) → decode token and add user info to req.user
+ * - If user is NOT logged in (no token) → set req.user = null and continue
+ * 
+ * This allows routes to work for both logged-in and anonymous users.
+ * 
+ * Example usage:
+ * - Public articles page: Show "Login" button if req.user is null
+ * - Public articles page: Show "My Profile" if req.user exists
+ * 
+ * For routes that REQUIRE authentication, use requireAuth middleware instead.
+ */
+
 const optionalAuth = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
@@ -15,7 +31,7 @@ const optionalAuth = (req, res, next) => {
         }
 
         const token = authHeader.split(" ")[1];
-        const decoded = verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, JWT_SECRET_KEY);
 
         req.user = decoded;
         next();
