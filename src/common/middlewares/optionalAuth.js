@@ -1,5 +1,5 @@
-import { verify } from "jsonwebtoken";
-import AppError from "../errors/AppError";
+import verify  from "jsonwebtoken";
+import AppError from "../errors/AppError.js";
 
 //Optional Auth to be use at global level -> 
 // -> If User loggedIn get UserInfo add into req object;

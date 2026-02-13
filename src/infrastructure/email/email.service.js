@@ -1,5 +1,5 @@
-import { sendMail } from "./email.client";
-import CustomError from "../../common/errors/customError";
+import { sendMail } from "./email.client.js";
+import CustomError from "../../common/errors/customError.js";  // Customer Error as of now doesn't exist but we can create it in the future to handle custom errors in a better way
 
 const sendEmail = async ({
     to,
@@ -30,4 +30,4 @@ const sendEmail = async ({
     }
 };
 
-export default { sendEmail };
+export default sendEmail ;

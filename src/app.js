@@ -1,8 +1,8 @@
 import express, { json, urlencoded } from "express";
 import cors from "cors";
-import globalErrorHandler from "./common/errors/errorHandler";
-import routes from "./routes";
-import optionalAuth from "./common/middlewares/optionalAuth";
+import globalErrorHandler from "./common/errors/errorHandler.js";
+import routes from "./routes/index.js";
+import optionalAuth from "./common/middlewares/optionalAuth.js";
 const app = express();
 app.use(cors());
 

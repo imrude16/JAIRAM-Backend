@@ -1,12 +1,15 @@
 import { Router } from "express";
-import { requireAuth } from "../../common/middlewares/requireAuth";
-import { allowRoles } from "../../common/middlewares/roleBaseMiddleware";
-import { ROLES } from "../../common/constants/roles";
-import { createUserSchema, getUserByIdSchema } from "./users.validator";
-import { validateRequest } from "../../common/middlewares/validateRequest";
-import asyncHandler from "../../common/middlewares/asyncHandler";
+import requireAuth  from "../../common/middlewares/requireAuth.js";
+import allowRoles from "../../common/middlewares/roleBaseMiddleware.js";
+import ROLES from "../../common/constants/roles.js";
+import { createUserSchema, getUserByIdSchema } from "./users.validator.js";
+import validateRequest  from "../../common/middlewares/validateRequest.js";
+import asyncHandler from "../../common/middlewares/asyncHandler.js";
+import userController from "./users.controller.js";
+
+const { createUser, getUserById } = userController;
+
 const router = Router();
-import { createUser, getUserById } from "./users.controller";
 
 router.post(
     "/",

@@ -1,5 +1,5 @@
-import AppError from "../../common/errors/AppError";
-import User from "./users.model";
+import AppError from "../../common/errors/AppError.js";
+import User from "./users.model.js";
 import { hash } from "bcrypt";
 
 const createUser = async (payload) => {

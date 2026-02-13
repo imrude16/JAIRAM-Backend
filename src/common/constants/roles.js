@@ -6,4 +6,4 @@ const ROLES = {
     TECHNICAL_REVIEWER: "TECHNICAL_REVIEWER"
 };
 
-export default { ROLES };
+export default ROLES ;

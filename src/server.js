@@ -1,12 +1,12 @@
-import { listen } from "./app";
-import { PORT } from "./config/env";
-import connectDB from "./infrastructure/mongodb/connection";
+import app from "./app.js";
+import { PORT } from "./config/env.js";
+import connectDB from "./infrastructure/mongodb/connection.js";
 
 const startServer = async () => {
     try {
         await connectDB();
 
-        listen(PORT, () => {
+        app.listen(PORT, () => {
             console.log(`🚀 Server running on port ${PORT}`);
         });
     } catch (err) {

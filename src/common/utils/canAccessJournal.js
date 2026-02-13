@@ -8,5 +8,5 @@ const canAccessJournal = (journal, user) => {
 };
 
 export default {
-    canAccessJournal
+    canAccessJournal,
 };

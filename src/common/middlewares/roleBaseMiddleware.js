@@ -1,5 +1,5 @@
-import { STATUS_CODES } from "../constants/statusCodes";
-import AppError from "../errors/AppError";
+import STATUS_CODES from "../constants/statusCodes.js";
+import AppError from "../errors/AppError.js";
 
 //For RoleBaseAccess -> Handles Role-Based Access Control
 const allowRoles = (...roles) => {
@@ -16,4 +16,4 @@ const allowRoles = (...roles) => {
     };
 };
 
-export default { allowRoles };
+export default allowRoles ;
