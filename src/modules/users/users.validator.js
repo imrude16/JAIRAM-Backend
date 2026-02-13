@@ -264,7 +264,7 @@ export const updateUserSchema = {
         id: Joi.string()
             .hex()
             .length(24)
-            .required()
+            .optional() // ID is optional because /me route doesn't have it
             .messages({
                 "string.hex": "Invalid user ID format",
                 "string.length": "Invalid user ID format",

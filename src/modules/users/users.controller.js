@@ -189,11 +189,16 @@ const getUserById = async (req, res) => {
  * Response: { success: true, message: "...", data: { user } }
  */
 const updateUserProfile = async (req, res) => {
-    const { id } = req.params;
+    // For /me route, use req.user.id (from auth middleware)
+    // For /:id route, use req.params.id (admin updating any user)
+    const userId = req.params.id || req.user.id;
     const updates = req.body;
 
+    console.log("🟣 [UPDATE-PROFILE] User ID:", userId); // debugger
+    console.log("🟣 [UPDATE-PROFILE] Updates:", updates); // debugger
+
     // Call service layer
-    const result = await userService.updateUserProfile(id, updates);
+    const result = await userService.updateUserProfile(userId, updates);
 
     // Send success response
     sendSuccess(

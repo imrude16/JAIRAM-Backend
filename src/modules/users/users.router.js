@@ -83,7 +83,7 @@ router.get(
  * Body: {
  *   firstName, lastName, email, password, confirmPassword,
  *   profession, primarySpecialty, institution, department,
- *   phoneCode, mobileNumber, address, isScreenAccepted
+ *   phoneCode, mobileNumber, address, termsAccepted
  * }
  * 
  * Response: { success: true, message: "...", data: { email } }
@@ -179,7 +179,7 @@ router.get(
 );
 
 /**
- * UPDATE USER PROFILE
+ * UPDATE CURRENT USER'S PROFILE
  * 
  * PATCH /api/users/me
  * Headers: Authorization: Bearer <token>
@@ -187,6 +187,7 @@ router.get(
  * 
  * Response: { success: true, message: "...", data: { user } }
  * 
+ * Purpose: Allows users to update their OWN profile
  * Note: Cannot update email, password, or role through this endpoint
  */
 router.patch(
