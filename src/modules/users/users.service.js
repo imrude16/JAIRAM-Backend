@@ -474,7 +474,7 @@ const checkEmailAvailability = async (email) => {
 
     return {
         available: true,
-        message: "Email is available",
+        message: "Email is available for registration.",
     };
 };
 
