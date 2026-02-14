@@ -7,6 +7,6 @@ const canAccessJournal = (journal, user) => {
     return false;
 };
 
-export default {
+export {
     canAccessJournal,
 };

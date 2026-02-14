@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import AppError from "../errors/AppError.js";
+import { AppError } from "../errors/AppError.js";
 import { JWT_SECRET_KEY } from "../../config/env.js";
 
 /**
@@ -41,4 +41,4 @@ const optionalAuth = (req, res, next) => {
     }
 };
 
-export default optionalAuth;
+export { optionalAuth };

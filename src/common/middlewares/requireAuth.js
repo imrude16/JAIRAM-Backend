@@ -1,4 +1,4 @@
-import AppError from "../errors/AppError.js";
+import { AppError } from "../errors/AppError.js";
 
 //For Restricted Routes -> 
 //-> Because of global already user added -> so if user there then allowed, else reject;
@@ -9,4 +9,4 @@ const requireAuth = (req, res, next) => {
     next();
 };
 
-export default requireAuth ;
+export { requireAuth };

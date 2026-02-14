@@ -1,6 +1,6 @@
-import transporter from "./email.client.js";
-import AppError from "../../common/errors/AppError.js";
-import STATUS_CODES from "../../common/constants/statusCodes.js";
+import { transporter } from "./email.client.js";
+import { AppError } from "../../common/errors/AppError.js";
+import{ STATUS_CODES } from "../../common/constants/statusCodes.js";
 
 /**
  * EMAIL SERVICE
@@ -51,6 +51,6 @@ const sendEmail = async ({
     }
 };
 
-export default {
+export {
     sendEmail,
 };

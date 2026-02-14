@@ -1,11 +1,9 @@
-import AppError from "../../common/errors/AppError.js";
-import STATUS_CODES from "../../common/constants/statusCodes.js";
-import User from "./users.model.js";
-import jwtToken from "../../common/utils/jwtToken.js";
-import emailService from "../../infrastructure/email/email.service.js";
-import emailTemplates from "../../infrastructure/email/email.template.js";
-
-const { generateToken } = jwtToken;
+import { AppError } from "../../common/errors/AppError.js";
+import { STATUS_CODES } from "../../common/constants/statusCodes.js";
+import { User } from "./users.model.js";
+import { generateToken }  from "../../common/utils/jwtToken.js";               
+import { sendEmail } from "../../infrastructure/email/email.service.js";      
+import { otpTemplate } from "../../infrastructure/email/email.template.js";   
 
 /**
  * USER SERVICE LAYER
@@ -57,10 +55,10 @@ const registerUser = async (payload) => {
         await existingUser.save();
 
         // Send OTP email
-        await emailService.sendEmail({
+        await sendEmail({
             to: existingUser.email,
             subject: "JAIRAM - Email Verification OTP",
-            html: emailTemplates.otpTemplate(
+            html: otpTemplate(
                 existingUser.firstName,
                 otp
             ),
@@ -92,10 +90,10 @@ const registerUser = async (payload) => {
 
     // Step 4: Send OTP via email
     try {
-        await emailService.sendEmail({
+        await sendEmail({
             to: user.email,
             subject: "JAIRAM - Email Verification OTP",
-            html: emailTemplates.otpTemplate(user.firstName, otp),
+            html: otpTemplate(user.firstName, otp),
         });
 
         console.log("🔴 Email sent successfully!");  //debugger
@@ -230,10 +228,10 @@ const resendOTP = async (email) => {
 
     // Send OTP email
     try {
-        await emailService.sendEmail({
+        await sendEmail({
             to: user.email,
             subject: "JAIRAM - Email Verification OTP",
-            html: emailTemplates.otpTemplate(user.firstName, otp),
+            html: otpTemplate(user.firstName, otp),
         });
     } catch (emailError) {
         throw new AppError(
@@ -484,7 +482,7 @@ const checkEmailAvailability = async (email) => {
 // EXPORTS
 // ========================================
 
-export default {
+export default {   // check here - a inconsistency in export style (default vs named)
     registerUser,
     verifyOTP,
     resendOTP,

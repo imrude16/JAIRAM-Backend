@@ -256,7 +256,7 @@ const passwordResetTemplate = (name, resetLink) => {
     `;
 };
 
-export default {
+export {
     otpTemplate,
     welcomeTemplate,
     passwordResetTemplate,

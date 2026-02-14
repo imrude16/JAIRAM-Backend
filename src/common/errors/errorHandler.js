@@ -1,4 +1,4 @@
-import STATUS_CODES from "../constants/statusCodes.js";
+import { STATUS_CODES } from "../constants/statusCodes.js";
 
 const globalErrorHandler = (err, req, res, next) => {
 
@@ -34,4 +34,4 @@ const globalErrorHandler = (err, req, res, next) => {
     });
 };
 
-export default globalErrorHandler;
+export { globalErrorHandler };

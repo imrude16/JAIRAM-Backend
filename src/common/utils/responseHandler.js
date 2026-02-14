@@ -7,6 +7,6 @@ const sendSuccess = (res, message, data = null, meta = null, statusCode = 200) =
     });
 };
 
-export default {
+export {
     sendSuccess,
 };

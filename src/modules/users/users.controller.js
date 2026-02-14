@@ -1,8 +1,6 @@
-import userService from "./users.service.js";
-import responseHandler from "../../common/utils/responseHandler.js";
-import STATUS_CODES from "../../common/constants/statusCodes.js";
-
-const { sendSuccess } = responseHandler;
+import userService from "./users.service.js";   // check here - a inconsistency in import style 
+import { sendSuccess } from "../../common/utils/responseHandler.js";
+import { STATUS_CODES } from "../../common/constants/statusCodes.js";
 
 /**
  * USER CONTROLLER LAYER
@@ -290,7 +288,7 @@ const checkEmailAvailability = async (req, res) => {
 // EXPORTS
 // ========================================
 
-export default {
+export default {   // check here - a inconsistency in export style 
     registerUser,
     verifyOTP,
     resendOTP,

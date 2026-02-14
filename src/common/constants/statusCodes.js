@@ -11,4 +11,4 @@ const STATUS_CODES = {
     INTERNAL_SERVER_ERROR: 500,
 };
 
-export default STATUS_CODES;
+export { STATUS_CODES };

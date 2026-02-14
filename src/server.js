@@ -1,6 +1,6 @@
-import app from "./app.js";
+import { app } from "./app.js";
 import { PORT } from "./config/env.js";
-import connectDB from "./infrastructure/mongodb/connection.js";
+import { connectDB } from "./infrastructure/mongodb/connection.js";
 
 const startServer = async () => {
     try {

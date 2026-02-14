@@ -289,4 +289,4 @@ const User = model("User", userSchema);
 
 console.log("📦 [USER-MODEL] User model created and exported"); // debugger
 
-export default User;
+export { User };

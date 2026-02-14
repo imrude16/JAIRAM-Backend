@@ -1,4 +1,4 @@
-import AppError from "../errors/AppError.js";
+import { AppError } from "../errors/AppError.js";
 
 const validateRequest = (schemas) => (req, res, next) => {
     try {
@@ -45,4 +45,4 @@ const validateRequest = (schemas) => (req, res, next) => {
     }
 };
 
-export default validateRequest;
+export { validateRequest };

@@ -1,10 +1,10 @@
 import { Router } from "express";
-import requireAuth from "../../common/middlewares/requireAuth.js";
-import allowRoles from "../../common/middlewares/roleBaseMiddleware.js";
-import ROLES from "../../common/constants/roles.js";
-import validateRequest from "../../common/middlewares/validateRequest.js";
-import asyncHandler from "../../common/middlewares/asyncHandler.js";
-import userController from "./users.controller.js";
+import { requireAuth } from "../../common/middlewares/requireAuth.js";
+import { allowRoles } from "../../common/middlewares/roleBaseMiddleware.js";
+import { ROLES } from "../../common/constants/roles.js";
+import { validateRequest } from "../../common/middlewares/validateRequest.js";
+import { asyncHandler } from "../../common/middlewares/asyncHandler.js";
+import  userController  from "./users.controller.js";  // check here - a inconsistency in import style 
 import {
     registerUserSchema,
     verifyOTPSchema,
@@ -258,4 +258,4 @@ router.patch(
     asyncHandler(updateUserProfile)
 );
 
-export default router;
+export default router ; // check here - a inconsistency in export style 
