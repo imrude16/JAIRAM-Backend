@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import { requireAuth } from "../../common/middlewares/requireAuth.js";
 import { allowRoles } from "../../common/middlewares/roleBaseMiddleware.js";
 import { ROLES } from "../../common/constants/roles.js";
@@ -15,6 +16,7 @@ import {
     changePasswordSchema,
     checkEmailSchema,
 } from "./users.validator.js";
+
 
 const {
     registerUser,
@@ -46,37 +48,26 @@ const router = Router();
  *                          globalErrorHandler (if error occurs)
  */
 
+
 // ========================================
 // PUBLIC ROUTES (No Authentication Required)
 // ========================================
-
-/**
- * CHECK EMAIL AVAILABILITY
- * 
+/*
+ * CHECK EMAIL AVAILABILITY FOR REGISTRATION
+ *
  * GET /api/users/check-email?email=example@email.com
  * 
  * Purpose: Check if email is already registered
  * Use Case: Real-time validation during registration
- * 
- * Frontend Implementation:
- * ```javascript
- * const checkEmail = debounce(async (email) => {
- *   const response = await fetch(`/api/users/check-email?email=${email}`);
- *   const data = await response.json();
- *   
- *   if (!data.data.available) {
- *     setError(data.data.message);
- *   }
- * }, 500); // Debounce for 500ms
- * ```
- */
+*/
 router.get(
     "/check-email",
     validateRequest(checkEmailSchema),
     asyncHandler(checkEmailAvailability)
 );
 
-/**
+
+/*
  * REGISTER USER (Step 1: Send OTP)
  * 
  * POST /api/users/register
@@ -85,16 +76,7 @@ router.get(
  *   profession, primarySpecialty, institution, department,
  *   phoneCode, mobileNumber, address, termsAccepted
  * }
- * 
- * Response: { success: true, message: "...", data: { email } }
- * 
- * Process:
- * 1. Validate request data
- * 2. Check if user exists
- * 3. Create user (unverified)
- * 4. Generate and send OTP
- * 5. Return success message
- */
+*/
 router.post(
     "/register",
     validateRequest(registerUserSchema),
@@ -106,14 +88,6 @@ router.post(
  * 
  * POST /api/users/verify-otp
  * Body: { email, otp }
- * 
- * Response: { success: true, message: "...", data: { token, user } }
- * 
- * Process:
- * 1. Validate OTP
- * 2. Mark email as verified
- * 3. Generate JWT token
- * 4. Return token and user data
  */
 router.post(
     "/verify-otp",
@@ -126,10 +100,6 @@ router.post(
  * 
  * POST /api/users/resend-otp
  * Body: { email }
- * 
- * Response: { success: true, message: "...", data: { email } }
- * 
- * Use Case: User didn't receive OTP or OTP expired
  */
 router.post(
     "/resend-otp",
@@ -142,14 +112,6 @@ router.post(
  * 
  * POST /api/users/login
  * Body: { email, password }
- * 
- * Response: { success: true, message: "...", data: { token, user } }
- * 
- * Process:
- * 1. Validate credentials
- * 2. Check email verification status
- * 3. Generate JWT token
- * 4. Return token and user data
  */
 router.post(
     "/login",
@@ -157,20 +119,15 @@ router.post(
     asyncHandler(loginUser)
 );
 
+
 // ========================================
 // PROTECTED ROUTES (Authentication Required)
 // ========================================
-
 /**
  * GET CURRENT USER
  * 
  * GET /api/users/me
  * Headers: Authorization: Bearer <token>
- * 
- * Response: { success: true, message: "...", data: { user } }
- * 
- * Purpose: Get logged-in user's profile
- * Used for: Profile page, user info in header, etc.
  */
 router.get(
     "/me",
@@ -184,11 +141,6 @@ router.get(
  * PATCH /api/users/me
  * Headers: Authorization: Bearer <token>
  * Body: { firstName, lastName, phoneNumber, address, ... }
- * 
- * Response: { success: true, message: "...", data: { user } }
- * 
- * Purpose: Allows users to update their OWN profile
- * Note: Cannot update email, password, or role through this endpoint
  */
 router.patch(
     "/me",
@@ -203,10 +155,6 @@ router.patch(
  * POST /api/users/change-password
  * Headers: Authorization: Bearer <token>
  * Body: { currentPassword, newPassword, confirmNewPassword }
- * 
- * Response: { success: true, message: "..." }
- * 
- * Security: Requires current password verification
  */
 router.post(
     "/change-password",
@@ -215,17 +163,15 @@ router.post(
     asyncHandler(changePassword)
 );
 
+
 // ========================================
 // ADMIN ROUTES (Admin Access Only)
 // ========================================
-
 /**
  * GET USER BY ID
  * 
  * GET /api/users/:id
  * Headers: Authorization: Bearer <token>
- * 
- * Response: { success: true, message: "...", data: { user } }
  * 
  * Access: Admin only
  * Purpose: View any user's profile (for admin dashboard)
@@ -244,8 +190,6 @@ router.get(
  * PATCH /api/users/:id
  * Headers: Authorization: Bearer <token>
  * Body: { firstName, lastName, role, status, ... }
- * 
- * Response: { success: true, message: "...", data: { user } }
  * 
  * Access: Admin only
  * Purpose: Update any user's profile (including role and status)

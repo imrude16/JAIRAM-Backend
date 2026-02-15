@@ -247,10 +247,10 @@ const resendOTP = async (email) => {
     };
 };
 
+
 // ========================================
 // LOGIN
 // ========================================
-
 /**
  * LOGIN USER
  * 
@@ -327,10 +327,10 @@ const loginUser = async (email, password) => {
     };
 };
 
+
 // ========================================
 // USER PROFILE OPERATIONS
 // ========================================
-
 /**
  * GET USER BY ID
  * 
@@ -435,10 +435,10 @@ const changePassword = async (userId, currentPassword, newPassword) => {
     };
 };
 
+
 // ========================================
 // EMAIL AVAILABILITY CHECK (UX IMPROVEMENT)
 // ========================================
-
 /**
  * CHECK EMAIL AVAILABILITY
  * 
@@ -477,10 +477,6 @@ const checkEmailAvailability = async (email) => {
         message: "Email is available for registration.",
     };
 };
-
-// ========================================
-// EXPORTS
-// ========================================
 
 export default {   // check here - a inconsistency in export style (default vs named)
     registerUser,

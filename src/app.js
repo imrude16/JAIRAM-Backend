@@ -1,8 +1,10 @@
 import express, { json, urlencoded } from "express";
 import cors from "cors";
-import { globalErrorHandler } from "./common/errors/errorHandler.js";
+
 import routes from "./routes/index.js";    // check here - a inconsistency in import style 
+import { globalErrorHandler } from "./common/errors/errorHandler.js";
 import { optionalAuth } from "./common/middlewares/optionalAuth.js";
+
 const app = express();
 app.use(cors());
 

@@ -1,11 +1,4 @@
 /**
- * EMAIL TEMPLATES
- * 
- * This file contains HTML templates for various emails sent by the system.
- * All templates use inline CSS for better email client compatibility.
- */
-
-/**
  * OTP VERIFICATION EMAIL TEMPLATE
  * 
  * Sent when user registers or requests OTP resend

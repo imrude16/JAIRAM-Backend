@@ -1,4 +1,5 @@
 import { connect } from "mongoose";
+
 import { MONGO_URI } from "../../config/env.js";
 
 const connectDB = async () => {

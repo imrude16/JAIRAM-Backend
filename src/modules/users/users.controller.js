@@ -16,18 +16,6 @@ import { STATUS_CODES } from "../../common/constants/statusCodes.js";
  * - Errors are automatically caught by asyncHandler and sent to globalErrorHandler
  */
 
-// ========================================
-// REGISTRATION ENDPOINTS
-// ========================================
-
-/**
- * REGISTER USER (Step 1)
- * 
- * POST /api/users/register
- * Body: { firstName, lastName, email, password, ... }
- * 
- * Response: { success: true, message: "...", data: { email } }
- */
 const registerUser = async (req, res) => {
 
     // Call service layer (business logic)
@@ -43,14 +31,7 @@ const registerUser = async (req, res) => {
     );
 };
 
-/**
- * VERIFY OTP (Step 2)
- * 
- * POST /api/users/verify-otp
- * Body: { email, otp }
- * 
- * Response: { success: true, message: "...", data: { token, user } }
- */
+
 const verifyOTP = async (req, res) => {
     const { email, otp } = req.body;
 
@@ -70,14 +51,7 @@ const verifyOTP = async (req, res) => {
     );
 };
 
-/**
- * RESEND OTP
- * 
- * POST /api/users/resend-otp
- * Body: { email }
- * 
- * Response: { success: true, message: "...", data: { email } }
- */
+
 const resendOTP = async (req, res) => {
     const { email } = req.body;
 
@@ -94,18 +68,7 @@ const resendOTP = async (req, res) => {
     );
 };
 
-// ========================================
-// AUTHENTICATION ENDPOINTS
-// ========================================
 
-/**
- * LOGIN USER
- * 
- * POST /api/users/login
- * Body: { email, password }
- * 
- * Response: { success: true, message: "...", data: { token, user } }
- */
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -125,20 +88,7 @@ const loginUser = async (req, res) => {
     );
 };
 
-// ========================================
-// PROFILE ENDPOINTS
-// ========================================
 
-/**
- * GET CURRENT USER
- * 
- * GET /api/users/me
- * Headers: Authorization: Bearer <token>
- * 
- * Response: { success: true, message: "...", data: { user } }
- * 
- * Note: req.user is set by requireAuth middleware
- */
 const getCurrentUser = async (req, res) => {
     // req.user is set by requireAuth middleware
     const result = await userService.getUserById(req.user.id);
@@ -153,14 +103,7 @@ const getCurrentUser = async (req, res) => {
     );
 };
 
-/**
- * GET USER BY ID
- * 
- * GET /api/users/:id
- * Headers: Authorization: Bearer <token>
- * 
- * Response: { success: true, message: "...", data: { user } }
- */
+
 const getUserById = async (req, res) => {
     const { id } = req.params;
 
@@ -177,15 +120,7 @@ const getUserById = async (req, res) => {
     );
 };
 
-/**
- * UPDATE USER PROFILE
- * 
- * PATCH /api/users/:id
- * Headers: Authorization: Bearer <token>
- * Body: { firstName, lastName, phoneNumber, ... }
- * 
- * Response: { success: true, message: "...", data: { user } }
- */
+
 const updateUserProfile = async (req, res) => {
     // For /me route, use req.user.id (from auth middleware)
     // For /:id route, use req.params.id (admin updating any user)
@@ -208,15 +143,7 @@ const updateUserProfile = async (req, res) => {
     );
 };
 
-/**
- * CHANGE PASSWORD
- * 
- * POST /api/users/change-password
- * Headers: Authorization: Bearer <token>
- * Body: { currentPassword, newPassword, confirmNewPassword }
- * 
- * Response: { success: true, message: "..." }
- */
+
 const changePassword = async (req, res) => {
     const { currentPassword, newPassword } = req.body;
 
@@ -237,35 +164,7 @@ const changePassword = async (req, res) => {
     );
 };
 
-// ========================================
-// UTILITY ENDPOINTS
-// ========================================
 
-/**
- * CHECK EMAIL AVAILABILITY
- * 
- * GET /api/users/check-email?email=example@email.com
- * 
- * Response: { success: true, message: "...", data: { available } }
- * 
- * USAGE IN FRONTEND:
- * 
- * ```javascript
- * // On email input blur or onChange (with debounce)
- * const checkEmail = async (email) => {
- *   const response = await fetch(`/api/users/check-email?email=${email}`);
- *   const data = await response.json();
- *   
- *   if (!data.data.available) {
- *     // Show error message
- *     setEmailError(data.data.message);
- *   } else {
- *     // Clear error
- *     setEmailError(null);
- *   }
- * };
- * ```
- */
 const checkEmailAvailability = async (req, res) => {
     const { email } = req.query;
 
@@ -284,9 +183,6 @@ const checkEmailAvailability = async (req, res) => {
     );
 };
 
-// ========================================
-// EXPORTS
-// ========================================
 
 export default {   // check here - a inconsistency in export style 
     registerUser,

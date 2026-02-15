@@ -163,6 +163,7 @@ export const registerUserSchema = {
     }),
 };
 
+
 // ========== VERIFY OTP SCHEMA ==========
 /**
  * Validates OTP verification request
@@ -193,6 +194,7 @@ export const verifyOTPSchema = {
     }),
 };
 
+
 // ========== RESEND OTP SCHEMA ==========
 /**
  * Validates request to resend OTP
@@ -210,6 +212,7 @@ export const resendOTPSchema = {
             }),
     }),
 };
+
 
 // ========== LOGIN SCHEMA ==========
 /**
@@ -235,6 +238,7 @@ export const loginUserSchema = {
     }),
 };
 
+
 // ========== GET USER BY ID SCHEMA ==========
 /**
  * Validates request to get user by ID
@@ -252,6 +256,7 @@ export const getUserByIdSchema = {
             }),
     }),
 };
+
 
 // ========== UPDATE USER SCHEMA ==========
 /**
@@ -306,6 +311,7 @@ export const updateUserSchema = {
         }),
 };
 
+
 // ========== CHANGE PASSWORD SCHEMA ==========
 /**
  * Validates password change request
@@ -339,6 +345,7 @@ export const changePasswordSchema = {
     }),
 };
 
+
 // ========== FORGOT PASSWORD SCHEMA ==========
 /**
  * Validates forgot password request (sends reset link)
@@ -356,6 +363,7 @@ export const forgotPasswordSchema = {
             }),
     }),
 };
+
 
 // ========== RESET PASSWORD SCHEMA ==========
 /**
@@ -387,6 +395,7 @@ export const resetPasswordSchema = {
             }),
     }),
 };
+
 
 // ========== CHECK EMAIL AVAILABILITY SCHEMA ==========
 /**

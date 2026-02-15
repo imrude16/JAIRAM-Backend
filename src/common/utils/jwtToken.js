@@ -1,15 +1,8 @@
 import jwt from "jsonwebtoken";
+
 import { JWT_SECRET_KEY } from "../../config/env.js";
 
-/**
- * JWT TOKEN UTILITY
- * 
- * Handles JWT token generation for user authentication
- * 
- * Note: jsonwebtoken is a CommonJS package, so we import the default export
- * instead of named exports to avoid ES module compatibility issues
- */
-
+// Handles JWT token generation for user authentication
 const generateToken = (user) => {
     return jwt.sign(
         {

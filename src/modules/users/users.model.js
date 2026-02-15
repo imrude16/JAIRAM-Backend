@@ -146,7 +146,7 @@ const userSchema = new Schema(
         },
     },
     {
-        timestamps: true, // Automatically adds createdAt and updatedAt
+        timestamps: true, 
         toJSON: {
             virtuals: true,
             transform: function (doc, ret) {
@@ -168,7 +168,6 @@ userSchema.virtual("fullName").get(function () {
 });
 
 // ========== MIDDLEWARE (HOOKS) ==========
-
 /**
  * PRE-SAVE MIDDLEWARE
  * 
@@ -178,7 +177,6 @@ userSchema.virtual("fullName").get(function () {
  * IMPORTANT: In Mongoose 6+, when using async/await, DO NOT use next()
  * Just return or throw errors - Mongoose handles the rest automatically
  * 
- * Why? Storing plain-text passwords is a security risk!
  */
 userSchema.pre("save", async function () {
     console.log("🔶 [PRE-SAVE] Hook started"); // debugger
@@ -199,7 +197,6 @@ userSchema.pre("save", async function () {
 
 // ========== INSTANCE METHODS ==========
 // These methods are available on individual user documents
-
 /**
  * COMPARE PASSWORD METHOD
  * 
@@ -269,7 +266,6 @@ userSchema.methods.verifyOTP = function (otp) {
 
 // ========== STATIC METHODS ==========
 // These methods are available on the User model itself
-
 /**
  * FIND BY EMAIL (STATIC METHOD)
  * 
@@ -284,9 +280,6 @@ userSchema.statics.findByEmail = function (email) {
     return this.findOne({ email }).select("+password");
 };
 
-// Create and export the User model
 const User = model("User", userSchema);
-
-console.log("📦 [USER-MODEL] User model created and exported"); // debugger
 
 export { User };
