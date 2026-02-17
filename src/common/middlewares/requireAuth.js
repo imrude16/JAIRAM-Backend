@@ -10,3 +10,19 @@ const requireAuth = (req, res, next) => {
 };
 
 export { requireAuth };
+
+/*
+// FROM HERE - EXAMPLE OF HOW req.user IS POPULATED 
+// IT IS CREATED WHEN REQUEST COMES IN WITH A VALID JWT TOKEN IN THE AUTHORIZATION HEADER
+req = {
+   body: {},
+   params: {},
+   query: {},
+   headers: {...},
+   user: {
+       id: "123",
+       email: "...",
+       role: "admin"
+   }
+}
+*/
