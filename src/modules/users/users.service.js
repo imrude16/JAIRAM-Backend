@@ -96,6 +96,15 @@ const formatUserResponse = (user) => ({
 // REGISTRATION FLOW (2-STEP PROCESS)
 // ================================================
 
+/* --> registerUser flow:
+1. Check if email exists
+2. If verified → error
+3. If exists but not verified → resend OTP
+4. If new → create user
+5. Generate OTP
+6. Send OTP email
+7. Return response
+*/
 const registerUser = async (payload) => {
     try {
 
@@ -156,6 +165,16 @@ const registerUser = async (payload) => {
     }
 };
 
+/* --> verifyOTP flow:
+1. Find user (with OTP fields)
+2. Check exists
+3. Check already verified
+4. Verify OTP
+5. Update verification status
+6. Clear OTP fields
+7. Generate JWT token
+8. Return token + formatted user
+*/
 const verifyOTP = async (email, otp) => {
     try {
 
@@ -205,6 +224,12 @@ const verifyOTP = async (email, otp) => {
     }
 };
 
+/* --> resendOTP flow:
+1. Find user
+2. Check not verified
+3. Generate OTP
+4. Send email
+*/
 const resendOTP = async (email) => {
     try {
 
@@ -229,6 +254,15 @@ const resendOTP = async (email) => {
     }
 };
 
+/* --> loginUser flow:
+1. Find user (with password)
+2. Check exists
+3. Compare password
+4. Check verified
+5. Check active
+6. Generate token
+7. Return formatted user
+*/
 const loginUser = async (email, password) => {
     try {
 
@@ -266,6 +300,10 @@ const loginUser = async (email, password) => {
     }
 };
 
+/* --> getUserById flow:
+1. Find user (by ID)
+2. Check if exists - if not found, return 404 error else return user
+*/
 const getUserById = async (userId) => {
     try {
         console.log("🔵 [SERVICE] getUserById started"); // debugger
@@ -285,6 +323,14 @@ const getUserById = async (userId) => {
     }
 };
 
+/* --> updateUserProfile flow:
+1. Find user (by ID)
+2. Check if exists or not ( throw 404 error if not found )
+3. Prevent updates to sensitive fields
+4. Update allowed fields
+5. Save user
+6. Return updated user
+*/
 const updateUserProfile = async (userId, updates) => {
     try {
         console.log("🔵 [SERVICE] updateUserProfile started"); // debugger
@@ -319,6 +365,12 @@ const updateUserProfile = async (userId, updates) => {
     }
 };
 
+/* --> changePassword flow:
+1. Find user (with password)
+2. Verify current password
+3. Assign new password
+4. Save → pre-save hook hashes it
+*/
 const changePassword = async (userId, currentPassword, newPassword) => {
     try {
         console.log("🔵 [SERVICE] changePassword started"); // debugger
@@ -362,6 +414,12 @@ const changePassword = async (userId, currentPassword, newPassword) => {
     }
 };
 
+/* --> checkEmailAvailability flow:
+1. Find user by email
+2. If user exists and is verified → return not available (email already registered)
+3. If user exists but not verified → return not available (email registered but not verified)
+4. If user does not exist → return available
+*/
 const checkEmailAvailability = async (email) => {
     try {
 
